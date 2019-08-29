@@ -1,0 +1,11 @@
+1 - Criar banco de dados MySql chamado BD
+
+2 - criar tabela pessoa
+
+CREATE TABLE `pessoa` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+   `email` varchar(100) DEFAULT NULL,
+  `foto` longblob NOT NULL
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

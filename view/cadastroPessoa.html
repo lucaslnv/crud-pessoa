@@ -1,0 +1,89 @@
+	<h4>Cadastro</h4>
+	<hr>
+	<form novalidate name="form" >
+	  <div class="form-group">
+	    <label for="nome">Nome: </label>
+		<input type="text" ng-model="form.nome" class="form-control" id="nome" ng-required="true" ng-keypress="">
+		<label for="email">E-mail: </label>
+	    <input type="text" ng-model="form.email" class="form-control" id="email" ng-required="true" ng-keypress="">
+	  </div>
+
+		<label >Foto: </label>
+		<input type="file" id="foto" name="foto" ng-model="foto" onchange="angular.element(this).scope().changeFoto(this)" accept="image/gif, image/jpeg, image/png" /> 
+	  <br>
+	  <button type="button" class="btn btn-primary" ng-click="cadastrar(form)" id="btn" ng-disabled="form.$invalid">Inserir</button>
+	</form>
+</form>
+	
+  <!-- <pre>invalid = {{formServico.$invalid}}</pre> -->
+	<hr>
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>Foto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="pessoa in pessoas"> 
+				<td>{{pessoa.id}}</td>
+				<td>{{pessoa.nome}}</td>
+				<td>{{pessoa.email}}</td>
+				<td>
+					<img data-ng-src="{{pessoa.foto}}" style="width:50px; height: 50px; ">
+				</td>
+				
+				<td>
+					<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="excluirPessoa(pessoa.id)">Excluir</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+		<!--MODAL EDITAR -->
+	<div id="modalEditarLinha" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+	  <div class="modal-dialog">
+	  	<form name="formLinhaModal">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Editar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-group">
+			    <label >Linha: </label>
+			    <input type="text" name="nomeLinhaModal" ng-model="nomeLinhaModal" id="nomeLinhaModal" class="form-control" >
+			 </div>
+
+			  <br>
+			  <div ng-if="mostrarImgHorario" > 
+			  	<img  data-ng-src="{{horarioModal}}" style="width:50px; height: 50px; ">
+			  	<br>
+			  	<button type="button" class="btn btn-danger" ng-click="excluirHorario()"><i class="glyphicon glyphicon-trash"></i> Excluir Horário</button>
+			  </div>
+			  <br>
+			  <div ng-show="!mostrarImgHorario">
+			  	<label for="imagem1Modal">Horário: </label>
+			  	<input type="file" id="horarioModal" name="horarioModal" onchange="angular.element(this).scope().changeHorarioModal(this)" accept="image/gif, image/jpeg, image/png" />
+			  </div>
+
+			 <input type="text" id="idLinhaModal" ng-show="false" ng-model="idLinhaModal">
+	      </form>
+	      </div>
+	      <div class="modal-footer">
+
+	      	<button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="formLinhaoModal.$invalid" ng-click="editarLinha()">Editar</button>
+
+	      	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="excluirLinha()">Excluir</button>
+
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	      
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
